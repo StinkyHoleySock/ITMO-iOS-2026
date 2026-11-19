@@ -3,82 +3,61 @@ import SwiftUI
 @MainActor
 struct RecipeListView<Presenter: RecipeListViewOutput>: View {
     @StateObject private var presenter: Presenter
+    @State private var section = Section.recommendations
+
+    private enum Section: String, CaseIterable {
+        case recommendations = "Для вас"
+        case all = "Все"
+        case favorites = "Избранное"
+    }
 
     init(presenter: @autoclosure @escaping () -> Presenter) {
         _presenter = StateObject(wrappedValue: presenter())
     }
 
     var body: some View {
-        ZStack {
-            if presenter.state.recipes.isEmpty && !presenter.state.isLoadingRemote && presenter.state.remoteError == nil
-            {
-                ContentUnavailableView(
-                    "No recipes yet",
-                    systemImage: "book.closed",
-                    description: Text("Add your first recipe to see it here")
-                )
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color(red: 0.965, green: 0.973, blue: 0.965))
-            } else {
-                List {
-                    if presenter.state.isLoadingRemote {
-                        HStack(spacing: 10) {
-                            ProgressView()
-                            Text("Loading recipes…")
-                                .foregroundStyle(.secondary)
-                        }
-                    }
+        VStack(spacing: 0) {
+            Picker("Рецепты", selection: $section) {
+                ForEach(Section.allCases, id: \.self) { section in
+                    Text(section.rawValue).tag(section)
+                }
+            }
+            .pickerStyle(.segmented)
+            .padding(.horizontal, 20)
+            .padding(.bottom, 12)
 
-                    if let remoteError = presenter.state.remoteError {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(remoteError)
-                                .foregroundStyle(.secondary)
-                            Button("Retry") {
-                                Task { await presenter.loadRemote(force: true) }
-                            }
-                        }
-                    }
-
-                    ForEach(presenter.state.recipes) { recipe in
-                        Button {
-                            presenter.showRecipe(id: recipe.id)
-                        } label: {
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text(recipe.title)
-                                    .font(.headline)
-                                    .foregroundStyle(.primary)
-                                HStack(spacing: 12) {
-                                    Image(systemName: recipe.id.sourceSymbol)
-                                        .accessibilityLabel(recipe.id.sourceAccessibilityLabel)
-                                    Label("Ingredients: \(recipe.ingredientCount)", systemImage: "list.bullet")
-                                    if let minutes = recipe.cookingTimeMinutes {
-                                        Label("\(minutes) min", systemImage: "clock")
-                                    }
-                                }
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.vertical, 8)
-                        }
-                        .swipeActions {
-                            if case .local(let id) = recipe.id {
-                                Button("Delete", role: .destructive) {
-                                    presenter.delete(id: id)
-                                }
-                            }
-                        }
+            if presenter.state.isLoadingRemote {
+                ProgressView("Загружаем рецепты…").padding(8)
+            }
+            if let error = presenter.state.remoteError {
+                VStack(spacing: 6) {
+                    Text(error).font(.caption).foregroundStyle(.secondary)
+                    Button("Повторить загрузку") {
+                        Task { await presenter.loadRemote(force: true) }
                     }
                 }
-                .refreshable {
-                    presenter.load()
-                    await presenter.loadRemote(force: true)
-                }
-                .scrollContentBackground(.hidden)
-                .background(Color(red: 0.965, green: 0.973, blue: 0.965))
+                .padding(.horizontal)
+            }
+
+            switch section {
+                case .recommendations:
+                    RecipeDeckView(
+                        state: presenter.state,
+                        onOpen: presenter.showRecipe,
+                        onFavorite: presenter.toggleFavorite,
+                        onSkip: presenter.skip,
+                        onRestart: presenter.restartDeck,
+                        onRefresh: refresh
+                    )
+                case .all:
+                    recipeList(presenter.state.recipes, emptyTitle: "Пока нет рецептов")
+                case .favorites:
+                    recipeList(presenter.state.favorites, emptyTitle: "Здесь будут любимые рецепты")
             }
         }
-        .navigationTitle("Recipes")
+        .background(Color(.systemGroupedBackground))
+        .navigationTitle(section == .recommendations ? "Рекомендации Gastro" : section.rawValue)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             Button("Add recipe", systemImage: "plus", action: presenter.showNewRecipe)
                 .accessibilityIdentifier("recipes.add")
@@ -96,5 +75,38 @@ struct RecipeListView<Presenter: RecipeListViewOutput>: View {
         } message: {
             Text(presenter.state.error ?? "")
         }
+    }
+
+    @ViewBuilder
+    private func recipeList(_ recipes: [RecipeRowState], emptyTitle: String) -> some View {
+        if recipes.isEmpty {
+            ContentUnavailableView(
+                emptyTitle,
+                systemImage: section == .favorites ? "heart" : "book.closed",
+                description: Text("Добавьте рецепт или выберите карточку в рекомендациях")
+            )
+        } else {
+            List(recipes) { recipe in
+                RecipeListRow(
+                    recipe: recipe,
+                    isFavorite: presenter.state.favorites.contains { $0.id == recipe.id },
+                    onOpen: { presenter.showRecipe(id: recipe.id) },
+                    onToggleFavorite: { presenter.toggleFavorite(recipe) }
+                )
+                .swipeActions {
+                    if case .local(let id) = recipe.id {
+                        Button("Delete", role: .destructive) { presenter.delete(id: id) }
+                    }
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .refreshable {
+                await refresh()
+            }
+        }
+    }
+    private func refresh() async {
+        presenter.load()
+        await presenter.loadRemote(force: true)
     }
 }

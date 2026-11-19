@@ -25,11 +25,11 @@ nonisolated private final class UITestingURLProtocol: URLProtocol, @unchecked Se
     private var pendingResponse: DispatchWorkItem?
     private var stopped = false
 
-    override class func canInit(with request: URLRequest) -> Bool {
+    override static func canInit(with request: URLRequest) -> Bool {
         true
     }
 
-    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+    override static func canonicalRequest(for request: URLRequest) -> URLRequest {
         request
     }
 
@@ -59,7 +59,17 @@ nonisolated private final class UITestingURLProtocol: URLProtocol, @unchecked Se
         switch (request.httpMethod, url.path) {
             case ("GET", "/recipes"):
                 status = 200
-                body = #"{"recipes":[],"total":0,"skip":0,"limit":0}"#
+                body =
+                    ProcessInfo.processInfo.arguments.contains("--recipe-deck-fixture")
+                    ? """
+                    {"recipes":[
+                      {"id":1,"name":"Омлет","ingredients":["Яйца","Молоко"],
+                       "instructions":["Смешать"],"cookTimeMinutes":10},
+                      {"id":2,"name":"Салат","ingredients":["Огурец"],
+                       "instructions":["Нарезать"],"cookTimeMinutes":5}
+                    ],"total":2}
+                    """
+                    : #"{"recipes":[],"total":0,"skip":0,"limit":0}"#
             case ("POST", "/recipes/add"):
                 status = 201
                 body = #"{"id":51,"name":"UI test recipe"}"#

@@ -170,11 +170,11 @@ private final class EditorRouterSpy: RecipeEditorRouter {
 }
 
 private final class RecordingURLProtocol: URLProtocol, @unchecked Sendable {
-    override class func canInit(with request: URLRequest) -> Bool {
+    override static func canInit(with request: URLRequest) -> Bool {
         true
     }
 
-    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+    override static func canonicalRequest(for request: URLRequest) -> URLRequest {
         request
     }
 
@@ -204,7 +204,7 @@ private final class RecordingURLProtocol: URLProtocol, @unchecked Sendable {
                     "contentType": request.value(forHTTPHeaderField: "Content-Type") ?? "",
                     "body": try JSONSerialization.jsonObject(with: body),
                 ]
-                let name = String(decoding: try JSONSerialization.data(withJSONObject: echo), as: UTF8.self)
+                let name = try XCTUnwrap(String(data: JSONSerialization.data(withJSONObject: echo), encoding: .utf8))
                 data = try JSONSerialization.data(withJSONObject: ["id": 51, "name": name])
             }
             let response = try XCTUnwrap(

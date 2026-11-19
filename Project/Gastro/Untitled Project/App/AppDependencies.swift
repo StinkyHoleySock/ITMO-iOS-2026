@@ -4,6 +4,7 @@ import SwiftData
 
 @MainActor
 final class AppDependencies: ObservableObject {
+    let favoriteRecipeStore: any FavoriteRecipeStore
     let recipeRepository: any RecipeRepository
     let networkExamplesService: any NetworkExamplesService
     let recipeService: any RecipeService
@@ -30,6 +31,7 @@ final class AppDependencies: ObservableObject {
         session = .shared
         defaults = .standard
         #endif
+        favoriteRecipeStore = UserDefaultsFavoriteRecipeStore(defaults: defaults)
         let networkClient = NetworkClientImpl(baseURL: baseURL, session: session)
         recipeRepository = SwiftDataRecipeRepository(context: modelContext)
         networkExamplesService = NetworkExamplesServiceImpl(networkClient: networkClient)

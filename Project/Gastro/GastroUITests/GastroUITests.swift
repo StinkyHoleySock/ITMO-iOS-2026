@@ -52,7 +52,7 @@ final class GastroUITests: XCTestCase {
         XCTAssertTrue(alert.staticTexts["Enter a recipe name"].exists)
         alert.buttons["OK"].tap()
         app.buttons["Cancel"].tap()
-        XCTAssertTrue(app.staticTexts["No recipes yet"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Пока нет рецептов"].waitForExistence(timeout: 5))
     }
 
     func testPublishShowsLoadingAndReenablesButton() {
@@ -85,6 +85,39 @@ final class GastroUITests: XCTestCase {
         XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 2), .completed)
     }
 
+    func testSwipeFavoritesAndSkip() {
+        app = XCUIApplication()
+        app.launchArguments = ["--ui-testing", "--recipe-deck-fixture"]
+        app.launch()
+        app.buttons["home.recipes"].tap()
+        let omelet = app.staticTexts["Омлет"]
+        XCTAssertTrue(omelet.waitForExistence(timeout: 10))
+        let screenshot = XCTAttachment(screenshot: app.screenshot())
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
+        omelet.coordinate(withNormalizedOffset: CGVector(dx: 0.2, dy: 0.5))
+            .press(
+                forDuration: 0.1,
+                thenDragTo: omelet.coordinate(withNormalizedOffset: CGVector(dx: 0.2, dy: 0.5)).withOffset(
+                    CGVector(dx: 180, dy: 0)
+                )
+            )
+        let salad = app.staticTexts["Салат"]
+        XCTAssertTrue(salad.waitForExistence(timeout: 5))
+        let origin = app.coordinate(withNormalizedOffset: .zero)
+        origin.withOffset(CGVector(dx: app.frame.width * 0.8, dy: salad.frame.midY))
+            .press(
+                forDuration: 0.1,
+                thenDragTo: origin.withOffset(CGVector(dx: app.frame.width * 0.25, dy: salad.frame.midY))
+            )
+        XCTAssertTrue(app.staticTexts["Вы всё посмотрели"].waitForExistence(timeout: 5))
+        app.segmentedControls.buttons["Избранное"].tap()
+        XCTAssertTrue(app.staticTexts["Омлет"].waitForExistence(timeout: 5))
+        XCTAssertFalse(app.staticTexts["Салат"].exists)
+        app.buttons["Убрать из избранного"].tap()
+        XCTAssertTrue(app.staticTexts["Здесь будут любимые рецепты"].waitForExistence(timeout: 5))
+    }
+
     private func launch() {
         app = XCUIApplication()
         app.launchArguments = ["--ui-testing", "-AppleLanguages", "(en)", "-AppleLocale", "en_US"]
@@ -94,6 +127,7 @@ final class GastroUITests: XCTestCase {
 
     private func openEditor() {
         app.buttons["home.recipes"].tap()
+        app.segmentedControls.buttons["Все"].tap()
         let add = app.buttons["recipes.add"]
         XCTAssertTrue(add.waitForExistence(timeout: 5))
         add.tap()

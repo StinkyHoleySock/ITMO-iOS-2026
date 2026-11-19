@@ -34,6 +34,7 @@ private struct AppContentView: View {
                 RecipeListAssemblyImpl().build(
                     repository: dependencies.recipeRepository,
                     recipeService: dependencies.recipeService,
+                    favoriteStore: dependencies.favoriteRecipeStore,
                     navigator: navigation
                 )
             case .networkExamples:

@@ -7,6 +7,7 @@ protocol RecipeListAssembly {
     func build(
         repository: any RecipeRepository,
         recipeService: any RecipeService,
+        favoriteStore: any FavoriteRecipeStore,
         navigator: any AppNavigating
     ) -> Content
 }

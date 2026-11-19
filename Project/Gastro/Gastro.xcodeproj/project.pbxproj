@@ -6,14 +6,50 @@
 	objectVersion = 90;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8F91A6353093A49D00F87F76 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 8F91A6343093A49D00F87F76 /* .swiftlint.yml */; };
+		8F91A6363093A49D00F87F76 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 8F91A6343093A49D00F87F76 /* .swiftlint.yml */; };
+		8F91A6373093A49D00F87F76 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 8F91A6343093A49D00F87F76 /* .swiftlint.yml */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A1000000000000000000000A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000100000000;
+			remoteInfo = "Untitled Project";
+		};
+		A2000000000000000000000A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000100000000;
+			remoteInfo = "Untitled Project";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		000000000000000000000120 /* Untitled Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Untitled Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F91A6343093A49D00F87F76 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		A10000000000000000000003 /* GastroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = GastroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20000000000000000000003 /* GastroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = GastroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		000000000000000000000010 /* Untitled Project */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Untitled Project";
+			sourceTree = "<group>";
+		};
+		A10000000000000000000002 /* GastroTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = GastroTests;
+			sourceTree = "<group>";
+		};
+		A20000000000000000000002 /* GastroUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = GastroUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -24,12 +60,23 @@
 			files = (
 			);
 		};
+		A10000000000000000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		A20000000000000000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		000000000000000000000001 = {
 			isa = PBXGroup;
 			children = (
+				8F91A6343093A49D00F87F76 /* .swiftlint.yml */,
 				000000000000000000000010 /* Untitled Project */,
 				A10000000000000000000002 /* GastroTests */,
 				A20000000000000000000002 /* GastroUITests */,
@@ -41,8 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				000000000000000000000120 /* Untitled Project.app */,
-				A20000000000000000000003,
-				A10000000000000000000003,
+				A20000000000000000000003 /* GastroUITests.xctest */,
+				A10000000000000000000003 /* GastroTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,6 +104,7 @@
 				000000000000000120000000 /* Sources */,
 				000000000000000130000000 /* Frameworks */,
 				000000000000000140000000 /* Resources */,
+				8F91A6333093A1EB00F87F76 /* Slint */,
 			);
 			buildRules = (
 			);
@@ -67,6 +115,48 @@
 			productName = MyApp;
 			productReference = 000000000000000000000120 /* Untitled Project.app */;
 			productType = "com.apple.product-type.application";
+		};
+		A10000000000000000000001 /* GastroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000000007 /* Build configuration list for PBXNativeTarget "GastroTests" */;
+			buildPhases = (
+				A10000000000000000000004 /* Sources */,
+				A10000000000000000000005 /* Frameworks */,
+				A10000000000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1000000000000000000000B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A10000000000000000000002 /* GastroTests */,
+			);
+			name = GastroTests;
+			productName = GastroTests;
+			productReference = A10000000000000000000003 /* GastroTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A20000000000000000000001 /* GastroUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A20000000000000000000007 /* Build configuration list for PBXNativeTarget "GastroUITests" */;
+			buildPhases = (
+				A20000000000000000000004 /* Sources */,
+				A20000000000000000000005 /* Frameworks */,
+				A20000000000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A2000000000000000000000B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A20000000000000000000002 /* GastroUITests */,
+			);
+			name = GastroUITests;
+			productName = GastroUITests;
+			productReference = A20000000000000000000003 /* GastroUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -83,7 +173,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 000000000000000010000000 /* Build configuration list for PBXProject "Untitled Project" */;
+			buildConfigurationList = 000000000000000010000000 /* Build configuration list for PBXProject "Gastro" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -97,8 +187,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-A20000000000000000000001,
-A10000000000000000000001,
+				A20000000000000000000001 /* GastroUITests */,
+				A10000000000000000000001 /* GastroTests */,
 				000000000000000100000000 /* Untitled Project */,
 			);
 		};
@@ -108,9 +198,36 @@ A10000000000000000000001,
 		000000000000000140000000 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				8F91A6373093A49D00F87F76 /* .swiftlint.yml in Resources */,
+			);
+		};
+		A10000000000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				8F91A6363093A49D00F87F76 /* .swiftlint.yml in Resources */,
+			);
+		};
+		A20000000000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				8F91A6353093A49D00F87F76 /* .swiftlint.yml in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8F91A6333093A1EB00F87F76 /* Slint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			name = Slint;
+			shellPath = /bin/sh;
+			shellScript = (
+				"cd \"$SRCROOT\"",
+				"/opt/homebrew/bin/swiftlint lint --config \"$SRCROOT/.swiftlint.yml\"",
+				"",
+			);
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		000000000000000120000000 /* Sources */ = {
@@ -118,10 +235,33 @@ A10000000000000000000001,
 			files = (
 			);
 		};
+		A10000000000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		A20000000000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A1000000000000000000000B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000100000000 /* Untitled Project */;
+			targetProxy = A1000000000000000000000A /* PBXContainerItemProxy */;
+		};
+		A2000000000000000000000B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000100000000 /* Untitled Project */;
+			targetProxy = A2000000000000000000000A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		000000000000000011000000 /* Debug configuration for PBXProject "Untitled Project" */ = {
+		000000000000000011000000 /* Debug configuration for PBXProject "Gastro" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -191,7 +331,7 @@ A10000000000000000000001,
 			};
 			name = Debug;
 		};
-		000000000000000012000000 /* Release configuration for PBXProject "Untitled Project" */ = {
+		000000000000000012000000 /* Release configuration for PBXProject "Gastro" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -260,6 +400,7 @@ A10000000000000000000001,
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -298,6 +439,7 @@ A10000000000000000000001,
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -329,14 +471,80 @@ A10000000000000000000001,
 			};
 			name = Release;
 		};
+		A10000000000000000000008 /* Debug configuration for PBXNativeTarget "GastroTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.gastro.GastroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Untitled Project.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Untitled Project";
+			};
+			name = Debug;
+		};
+		A10000000000000000000009 /* Release configuration for PBXNativeTarget "GastroTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.gastro.GastroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Untitled Project.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Untitled Project";
+			};
+			name = Release;
+		};
+		A20000000000000000000008 /* Debug configuration for PBXNativeTarget "GastroUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.gastro.GastroUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Untitled Project";
+			};
+			name = Debug;
+		};
+		A20000000000000000000009 /* Release configuration for PBXNativeTarget "GastroUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.gastro.GastroUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Untitled Project";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		000000000000000010000000 /* Build configuration list for PBXProject "Untitled Project" */ = {
+		000000000000000010000000 /* Build configuration list for PBXProject "Gastro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				000000000000000011000000 /* Debug configuration for PBXProject "Untitled Project" */,
-				000000000000000012000000 /* Release configuration for PBXProject "Untitled Project" */,
+				000000000000000011000000 /* Debug configuration for PBXProject "Gastro" */,
+				000000000000000012000000 /* Release configuration for PBXProject "Gastro" */,
 			);
 			defaultConfigurationName = Release;
 		};
@@ -348,29 +556,23 @@ A10000000000000000000001,
 			);
 			defaultConfigurationName = Release;
 		};
+		A10000000000000000000007 /* Build configuration list for PBXNativeTarget "GastroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000000000000000000008 /* Debug configuration for PBXNativeTarget "GastroTests" */,
+				A10000000000000000000009 /* Release configuration for PBXNativeTarget "GastroTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A20000000000000000000007 /* Build configuration list for PBXNativeTarget "GastroUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A20000000000000000000008 /* Debug configuration for PBXNativeTarget "GastroUITests" */,
+				A20000000000000000000009 /* Release configuration for PBXNativeTarget "GastroUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-A10000000000000000000002 = {isa = PBXFileSystemSynchronizedRootGroup; path = GastroTests; sourceTree = "<group>";};
-A10000000000000000000003 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = GastroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR;};
-A10000000000000000000004 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0;};
-A10000000000000000000005 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0;};
-A10000000000000000000006 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0;};
-A1000000000000000000000A = {isa = PBXContainerItemProxy; containerPortal = 000000000000000000000000; proxyType = 1; remoteGlobalIDString = 000000000000000100000000; remoteInfo = "Untitled Project";};
-A1000000000000000000000B = {isa = PBXTargetDependency; target = 000000000000000100000000; targetProxy = A1000000000000000000000A;};
-A10000000000000000000001 = {isa = PBXNativeTarget; buildConfigurationList = A10000000000000000000007; buildPhases = (A10000000000000000000004, A10000000000000000000005, A10000000000000000000006,); buildRules = (); dependencies = (A1000000000000000000000B,); fileSystemSynchronizedGroups = (A10000000000000000000002,); name = GastroTests; productName = GastroTests; productReference = A10000000000000000000003; productType = "com.apple.product-type.bundle.unit-test";};
-A10000000000000000000008 = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 18.4; SDKROOT = iphoneos; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; PRODUCT_NAME = "$(TARGET_NAME)"; PRODUCT_BUNDLE_IDENTIFIER = dev.gastro.GastroTests; BUNDLE_LOADER = "$(TEST_HOST)"; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Untitled Project.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Untitled Project";}; name = Debug;};
-A10000000000000000000009 = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 18.4; SDKROOT = iphoneos; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; PRODUCT_NAME = "$(TARGET_NAME)"; PRODUCT_BUNDLE_IDENTIFIER = dev.gastro.GastroTests; BUNDLE_LOADER = "$(TEST_HOST)"; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Untitled Project.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Untitled Project";}; name = Release;};
-A10000000000000000000007 = {isa = XCConfigurationList; buildConfigurations = (A10000000000000000000008,A10000000000000000000009,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release;};
-A20000000000000000000002 = {isa = PBXFileSystemSynchronizedRootGroup; path = GastroUITests; sourceTree = "<group>";};
-A20000000000000000000003 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = GastroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR;};
-A20000000000000000000004 = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0;};
-A20000000000000000000005 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0;};
-A20000000000000000000006 = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0;};
-A2000000000000000000000A = {isa = PBXContainerItemProxy; containerPortal = 000000000000000000000000; proxyType = 1; remoteGlobalIDString = 000000000000000100000000; remoteInfo = "Untitled Project";};
-A2000000000000000000000B = {isa = PBXTargetDependency; target = 000000000000000100000000; targetProxy = A2000000000000000000000A;};
-A20000000000000000000001 = {isa = PBXNativeTarget; buildConfigurationList = A20000000000000000000007; buildPhases = (A20000000000000000000004, A20000000000000000000005, A20000000000000000000006,); buildRules = (); dependencies = (A2000000000000000000000B,); fileSystemSynchronizedGroups = (A20000000000000000000002,); name = GastroUITests; productName = GastroUITests; productReference = A20000000000000000000003; productType = "com.apple.product-type.bundle.ui-testing";};
-A20000000000000000000008 = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 18.4; SDKROOT = iphoneos; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; PRODUCT_NAME = "$(TARGET_NAME)"; PRODUCT_BUNDLE_IDENTIFIER = dev.gastro.GastroUITests; TEST_TARGET_NAME = "Untitled Project";}; name = Debug;};
-A20000000000000000000009 = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 18.4; SDKROOT = iphoneos; SUPPORTED_PLATFORMS = "iphoneos iphonesimulator"; SWIFT_VERSION = 5.0; TARGETED_DEVICE_FAMILY = "1,2"; PRODUCT_NAME = "$(TARGET_NAME)"; PRODUCT_BUNDLE_IDENTIFIER = dev.gastro.GastroUITests; TEST_TARGET_NAME = "Untitled Project";}; name = Release;};
-A20000000000000000000007 = {isa = XCConfigurationList; buildConfigurations = (A20000000000000000000008,A20000000000000000000009,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release;};
 	};
 	rootObject = 000000000000000000000000 /* Project object */;
 }
